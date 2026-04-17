@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PracticaRetrofit</string>
+    <string name="title_activity_pantalla_usuario">PantallaUsuario</string>
 </resources>
