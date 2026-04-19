@@ -1,5 +1,6 @@
 package com.example.practicaretrofit
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -25,6 +27,7 @@ import com.example.practicaretrofit.ui.theme.PracticaRetrofitTheme
 import androidx.compose.material3.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -35,7 +38,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-
+        PantallaInicio()
         }
     }
 }
@@ -43,6 +46,11 @@ class MainActivity : ComponentActivity() {
 @Preview
 @Composable
 fun PantallaInicio () {
+
+    val usuarios=LocalContext.current
+    val chistes=LocalContext.current
+    val imagenes=LocalContext.current
+
     Box( modifier = Modifier
         .fillMaxSize()) {
         Column(
@@ -86,8 +94,7 @@ fun PantallaInicio () {
                     modifier = Modifier.fillMaxWidth()
                         .padding(horizontal = 40.dp),
                     elevation = androidx.compose.material3.CardDefaults.cardElevation(
-                        defaultElevation = 8.dp
-                    ),
+                        defaultElevation = 8.dp),
                     colors = CardDefaults.cardColors(
                         containerColor = Color.White
                     )
@@ -96,7 +103,7 @@ fun PantallaInicio () {
                     /*Contenido de la Card*/
                     Column(
                         modifier = Modifier
-                            .padding(top = 40.dp)/*genera un espacio en la parte superior*/
+                            .padding(top = 40.dp)/*genera un espacio en la parte superior del contenido*/
                             .padding(16.dp)
                             .fillMaxWidth(),
                         horizontalAlignment = Alignment.CenterHorizontally,
@@ -104,7 +111,8 @@ fun PantallaInicio () {
                     ) {
 
                         Button(
-                            onClick = { /*TODO*/ },
+                            onClick = { val intent = Intent(usuarios, PantallaUsuario::class.java)
+                                usuarios.startActivity(intent) },
                             modifier = Modifier.fillMaxWidth(0.6f), /*“Ocupa el 60% del ancho disponible del contenedor padre”*/
                             contentPadding = PaddingValues(vertical = 14.dp), /*Crea un espacio interno entre el contenido (texto) y los bordes del botón*/
                             colors = ButtonDefaults.buttonColors(
@@ -184,6 +192,7 @@ fun PantallaInicio () {
             modifier = Modifier
                 .align(Alignment.BottomStart) // alineación a la izquierda inferior
                 .padding(12.dp)
+                .navigationBarsPadding()
         )
     }
 }
