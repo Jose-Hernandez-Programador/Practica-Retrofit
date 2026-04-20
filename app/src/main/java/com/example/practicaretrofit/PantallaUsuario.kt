@@ -6,15 +6,22 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.AlertDialogDefaults.containerColor
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -80,18 +87,21 @@ fun Contenedor() {
                     )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Gray,
+                    containerColor = Color(0xFF474645),
                     titleContentColor = Color.White )
             )
         },
-        content = { PaddingValues ->
-            Column(modifier = Modifier
-                .padding(PaddingValues)
-            ) {
-                ListaUsuarios()
-            }
+
+    ){  PaddingValues ->
+        Column(modifier = Modifier
+            .padding(PaddingValues)
+            .background(Color(0xFFFFFFFF))
+        ) {
+
+            ListaUsuarios()
         }
-    )
+    }
+    }
 
 
         /*
@@ -108,34 +118,87 @@ fun Contenedor() {
 
 
 
-}
-
-
 @Preview
 @Composable
-fun ListaUsuarios(viewModel: UsuariosViewModel = viewModel())//conecta la vista con el ViewModel
+fun ListaUsuarios(viewModel: UsuariosViewModel = viewModel(),
+                  modifier: Modifier = Modifier)//conecta la vista con el ViewModel
 {
 
     val listaUsuarios = viewModel.usuarios.value //obtiene la lista de usuarios desde el ViewModel
+    val cargando = viewModel.cargando.value
 
-    LazyColumn (modifier = Modifier.navigationBarsPadding()){
+    Box(
+        modifier = modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
 
-        items(listaUsuarios)/*recorre la lista de usuarios*/
-        { usuario -> /*represta cada usuario en la lista*/
+        if (cargando) {
 
-            Column(modifier = Modifier.padding(8.dp)) {
+            CircularProgressIndicator()
 
-                Text(text = "ID: ${usuario.id}")
-                Text(text = "Nombre: ${usuario.name}")
-                Text(text = "Email: ${usuario.email}")
-                Text(text = "Teléfono: ${usuario.phone}")
+        } else {
+            LazyColumn(modifier = Modifier.navigationBarsPadding()) {
 
+                items(listaUsuarios)/*recorre la lista de usuarios*/
+                { usuario -> /*represta cada usuario en la lista*/
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 12.dp, vertical = 6.dp),
+                        elevation = CardDefaults.cardElevation(6.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = Color.White
+                        )
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(8.dp),
+                            verticalArrangement = Arrangement.spacedBy(
+                                4.dp,
+                                alignment = Alignment.CenterVertically
+                            )
+                        )
+                        {
+
+                            Text(
+                                text = usuario.id.toString(),
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 18.sp
+                            )
+
+                            Spacer(modifier = Modifier.height(4.dp))
+
+                            Text(
+                                text = usuario.name,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 16.sp
+                            )
+
+                            Spacer(modifier = Modifier.height(4.dp))
+
+                            Text(
+                                text = usuario.email,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 16.sp
+                            )
+
+                            Spacer(modifier = Modifier.height(4.dp))
+
+                            Text(
+                                text = usuario.phone,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 16.sp
+                            )
+
+                        }
+                    }
+                }
             }
         }
     }
 }
 
-/*items(listaUsuarios) { usuario ->
+/*
+items(listaUsuarios) { usuario ->
 
     Card(
         modifier = Modifier
@@ -172,4 +235,4 @@ fun ListaUsuarios(viewModel: UsuariosViewModel = viewModel())//conecta la vista 
             )
         }
     }
-}*/
+} */
