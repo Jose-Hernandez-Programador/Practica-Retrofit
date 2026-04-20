@@ -188,11 +188,12 @@ fun PantallaInicio () {
         Text(
             text = "Created by Jose Programador",
             fontSize = 12.sp,
+            fontWeight = FontWeight.Bold,
             color = Color.Black,
             modifier = Modifier
                 .align(Alignment.BottomStart) // alineación a la izquierda inferior
                 .padding(12.dp)
-                .navigationBarsPadding()
+                .navigationBarsPadding()//crea espacio para la barra de navegación
         )
     }
 }
