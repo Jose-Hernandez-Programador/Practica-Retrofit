@@ -6,3 +6,7 @@ data class Usuario(
     val email: String,
     val phone: String
 )
+
+data class Chiste(
+    val value: String
+)

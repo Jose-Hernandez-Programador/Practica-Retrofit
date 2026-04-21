@@ -1,4 +1,5 @@
 import com.example.practicaretrofit.ApiService
+import com.example.practicaretrofit.ChisteApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -12,5 +13,16 @@ object RetrofitClient {
             .addConverterFactory(GsonConverterFactory.create()) //Convierte el JSON a objetos Kotlin
             .build()
             .create(ApiService::class.java) //Crea una instancia de la API usando la interfaz ApiService
+    }
+}
+
+object ChisteRetrofitClient{
+    private const val BASE_URL = "https://api.chucknorris.io/"
+    val api: ChisteApiService by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ChisteApiService::class.java)
     }
 }
