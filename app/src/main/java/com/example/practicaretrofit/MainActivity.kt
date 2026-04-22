@@ -128,7 +128,8 @@ fun PantallaInicio () {
                         }
 
                         Button(
-                            onClick = { /*TODO*/ },
+                            onClick = { val intent = Intent(chistes, PantallaChiste::class.java)
+                                usuarios.startActivity(intent) },
                             modifier = Modifier.fillMaxWidth(0.6f),
                             contentPadding = PaddingValues(vertical = 14.dp),
                             colors = ButtonDefaults.buttonColors(

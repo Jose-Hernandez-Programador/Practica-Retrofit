@@ -42,7 +42,7 @@ class PantallaChiste : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-
+        PantallaChistes()
         }
     }
 }
@@ -120,19 +120,29 @@ fun Chistes(viewModel: ChisteViewModel = viewModel(),
             CircularProgressIndicator()
 
         } else {
-            Column(
-                modifier = Modifier.padding(8.dp),
-                verticalArrangement = Arrangement.spacedBy
-                    (4.dp, alignment = Alignment.CenterVertically)
-                        )
-                        {
-                            Text(
-                                text = chiste?.value ?: "No hay chiste",
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 18.sp
-                            )
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 12.dp, vertical = 6.dp),
+                elevation = CardDefaults.cardElevation(6.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = Color.White
+                )
+            ) {
+                Column(
+                    modifier = Modifier.padding(8.dp),
+                    verticalArrangement = Arrangement.spacedBy
+                        (4.dp, alignment = Alignment.CenterVertically)
+                )
+                {
+                    Text(
+                        text = chiste?.value ?: "No hay chiste",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp
+                    )
 
-                        }
-                    }
                 }
             }
+        }
+    }
+}
