@@ -122,10 +122,11 @@ fun Contenedor() {
 @Composable
 fun ListaUsuarios(viewModel: UsuariosViewModel = viewModel(),
                   modifier: Modifier = Modifier)//conecta la vista con el ViewModel
+//modifier permite que desde afuera puedas modificar el diseño
 {
 
     val listaUsuarios = viewModel.usuarios.value //obtiene la lista de usuarios desde el ViewModel
-    val cargando = viewModel.cargando.value
+    val cargando = viewModel.cargando.value // trae el estado de cargando desde el ViewModel
 
     Box(
         modifier = modifier.fillMaxSize(),
@@ -134,13 +135,14 @@ fun ListaUsuarios(viewModel: UsuariosViewModel = viewModel(),
 
         if (cargando) {
 
-            CircularProgressIndicator()
+            CircularProgressIndicator() //si esta cargando muestra un circulo girando
 
         } else {
             LazyColumn(modifier = Modifier.navigationBarsPadding()) {
 
                 items(listaUsuarios)/*recorre la lista de usuarios*/
-                { usuario -> /*representa cada usuario en la lista*/
+                { usuario -> /*representa cada elemento de la lista*/
+                    //usuario es una variable lambda que contiene cada elemento de la lista
                     Card(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -152,8 +154,7 @@ fun ListaUsuarios(viewModel: UsuariosViewModel = viewModel(),
                     ) {
                         Column(
                             modifier = Modifier.padding(8.dp),
-                            verticalArrangement = Arrangement.spacedBy(
-                                4.dp,
+                            verticalArrangement = Arrangement.spacedBy(4.dp,
                                 alignment = Alignment.CenterVertically
                             )
                         )

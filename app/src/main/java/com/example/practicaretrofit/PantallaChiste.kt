@@ -117,7 +117,10 @@ fun Chistes(viewModel: ChisteViewModel = viewModel(),
 
         if (cargando) {
 
-            CircularProgressIndicator()
+            CircularProgressIndicator(
+                color = Color.Magenta, //cambia el color del circulo del loader
+                strokeWidth = 7.dp //cambia el grosor del circulo del loader
+            )
 
         } else {
             Card(

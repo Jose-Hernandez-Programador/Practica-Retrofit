@@ -168,7 +168,7 @@ fun PantallaInicio () {
                     modifier = Modifier
                         .fillMaxWidth(0.5f)
                         .offset(y = (-15).dp), // se mueve hacia arriba la sube
-                    shape = RoundedCornerShape(50), // estilo pill
+                    shape = RoundedCornerShape(50), // Hace que las esquinas de la card sean redondeadas
                     elevation = CardDefaults.cardElevation(6.dp),
                     colors = CardDefaults.cardColors(
                         containerColor = Color(0xFF2563EB)
