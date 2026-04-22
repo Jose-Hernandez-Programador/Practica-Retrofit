@@ -140,7 +140,7 @@ fun ListaUsuarios(viewModel: UsuariosViewModel = viewModel(),
             LazyColumn(modifier = Modifier.navigationBarsPadding()) {
 
                 items(listaUsuarios)/*recorre la lista de usuarios*/
-                { usuario -> /*represta cada usuario en la lista*/
+                { usuario -> /*representa cada usuario en la lista*/
                     Card(
                         modifier = Modifier
                             .fillMaxWidth()
