@@ -186,6 +186,8 @@ fun PantallaInicio () {
                 }
             }
         }
+
+        //texto esquina inferior izquierda
         Text(
             text = "Created by Jose Programador",
             fontSize = 12.sp,
@@ -193,7 +195,20 @@ fun PantallaInicio () {
             color = Color.Black,
             modifier = Modifier
                 .align(Alignment.BottomStart) // alineación a la izquierda inferior
-                .padding(12.dp)
+                .padding(12.dp) ////Evita que el texto quede pegado al borde
+                .navigationBarsPadding()//crea espacio para la barra de navegación
+        )
+
+        // texto esquina inferior derecha
+
+        Text(
+            text = "Versión 1.0.0",
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.Black,
+            modifier = Modifier
+                .align(Alignment.BottomEnd) // alineación a la derecha inferior
+                .padding(12.dp) //Evita que el texto quede pegado al borde
                 .navigationBarsPadding()//crea espacio para la barra de navegación
         )
     }
