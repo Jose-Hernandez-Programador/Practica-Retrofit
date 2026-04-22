@@ -2,4 +2,5 @@
     <string name="app_name">PracticaRetrofit</string>
     <string name="title_activity_pantalla_usuario">PantallaUsuario</string>
     <string name="title_activity_pantalla_chiste">PantallaChiste</string>
+    <string name="title_activity_pantalla_gato">PantallaGato</string>
 </resources>

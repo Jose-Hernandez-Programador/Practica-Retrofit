@@ -14,6 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PracticaRetrofit">
         <activity
+            android:name=".PantallaGato"
+            android:exported="false"
+            android:label="@string/title_activity_pantalla_gato"
+            android:theme="@style/Theme.PracticaRetrofit" />
+        <activity
             android:name=".PantallaChiste"
             android:exported="false"
             android:label="@string/title_activity_pantalla_chiste"

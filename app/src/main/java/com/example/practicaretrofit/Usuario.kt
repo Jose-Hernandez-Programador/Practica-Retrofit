@@ -10,3 +10,7 @@ data class Usuario(
 data class Chiste(
     val value: String
 )
+
+data class Gato(
+        val url: String
+)

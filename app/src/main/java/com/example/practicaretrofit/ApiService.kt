@@ -16,3 +16,7 @@ interface ChisteApiService {
     @GET("jokes/random")
     suspend fun getChiste(): Chiste
 }
+interface GatoApiService {
+    @GET("v1/images/search")
+    suspend fun getGato(): List<Gato>
+}
