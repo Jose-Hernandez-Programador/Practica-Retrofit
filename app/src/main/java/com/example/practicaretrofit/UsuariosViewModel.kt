@@ -43,7 +43,7 @@ class ChisteViewModel : ViewModel(){
     init {
         obtenerChiste()
     }
-private fun obtenerChiste(){
+ fun obtenerChiste(){
     viewModelScope.launch {
         try {
             carga.value = true

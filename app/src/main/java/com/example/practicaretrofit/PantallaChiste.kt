@@ -22,6 +22,8 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -36,6 +38,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.practicaretrofit.ui.theme.PracticaRetrofitTheme
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Refresh
 
 class PantallaChiste : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,7 +77,7 @@ fun PantallaChistes() {
 
 @Preview
 @Composable
-fun Pantalla() {
+fun Pantalla(viewModel: ChisteViewModel = viewModel()) {
 
     Scaffold(
         topBar = {
@@ -89,14 +93,22 @@ fun Pantalla() {
                     titleContentColor = Color.White )
             )
         },
+        floatingActionButton = {
+            FloatingActionButton(onClick = { viewModel.obtenerChiste() })
+            {
+                Icon(
+                    imageVector = Icons.Default.Refresh,
+                    contentDescription = "↻")
+            }
+        }
 
-        ){  PaddingValues ->
+        ){  paddingValues ->
         Column(modifier = Modifier
-            .padding(PaddingValues)
+            .padding(paddingValues)
             .background(Color(0xFFFFFFFF))
         ) {
 
-            Chistes()
+            Chistes(viewModel)
         }
     }
 }
@@ -118,7 +130,7 @@ fun Chistes(viewModel: ChisteViewModel = viewModel(),
         if (cargando) {
 
             CircularProgressIndicator(
-                color = Color.Magenta, //cambia el color del circulo del loader
+                color = Color.Blue, //cambia el color del circulo del loader
                 strokeWidth = 7.dp //cambia el grosor del circulo del loader
             )
 
