@@ -119,22 +119,22 @@ fun Chistes(viewModel: ChisteViewModel = viewModel(),
                   modifier: Modifier = Modifier)//conecta la vista con el ViewModel
 {
 
-    val chiste = viewModel.chiste.value
-    val cargando = viewModel.carga.value
+    val chiste = viewModel.chiste.value //obtiene los chistes desde el ViewModel
+    val cargando = viewModel.carga.value// trae el estado de cargando desde el ViewModel
 
     Box(
         modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
 
-        if (cargando) {
+        if (cargando) { //si el loader esta cargando muestra el loader
 
             CircularProgressIndicator(
                 color = Color.Blue, //cambia el color del circulo del loader
                 strokeWidth = 7.dp //cambia el grosor del circulo del loader
             )
 
-        } else {
+        } else {//si no esta cargando muestra el chiste
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -152,6 +152,8 @@ fun Chistes(viewModel: ChisteViewModel = viewModel(),
                 {
                     Text(
                         text = chiste?.value ?: "No hay chiste",
+                        //chiste?.value si chiste no es nulo muestra el chiste, si es nulo muestra null
+                        //?: "No hay chiste" si lo de la izquierda es nulo muestra el texto
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp
                     )
@@ -161,3 +163,9 @@ fun Chistes(viewModel: ChisteViewModel = viewModel(),
         }
     }
 }
+
+/*
+Símbolo	Significado
+?.	Acceso seguro (evita crash)
+?:	Valor por defecto si es null
+*/

@@ -3,6 +3,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import androidx.compose.runtime.*
 import com.example.practicaretrofit.Chiste
+import com.example.practicaretrofit.Gato
 import com.example.practicaretrofit.Usuario
 
 class UsuariosViewModel : ViewModel() //Creacion de la clase ViewModel
@@ -43,7 +44,7 @@ class ChisteViewModel : ViewModel(){
     init {
         obtenerChiste()
     }
- fun obtenerChiste(){
+ fun obtenerChiste(){ //en este caso no es private porque es una funcion que va a ser llamada en la UI por el FAB
     viewModelScope.launch {
         try {
             carga.value = true
@@ -57,3 +58,26 @@ class ChisteViewModel : ViewModel(){
 }
 }
 }
+
+class GatoViewModel : ViewModel() {
+    var gatitos = mutableStateOf<List<Gato>>(emptyList())
+    var load =mutableStateOf(true)
+    private set
+    init {
+        ObtenerGato()
+    }
+
+    fun ObtenerGato () {
+        viewModelScope.launch {
+            try {
+                load.value = true
+                val respuesta = GatoRetrofitClient.api.getGato()
+                gatitos.value = respuesta
+            } catch (e: Exception) {
+                e.printStackTrace()
+            } finally {
+                load.value = false
+            }
+            }
+        }
+    }

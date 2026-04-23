@@ -129,6 +129,7 @@ fun ListaUsuarios(viewModel: UsuariosViewModel = viewModel(),
     val cargando = viewModel.cargando.value // trae el estado de cargando desde el ViewModel
 
     Box(
+        //se usa box para superponer la pantalla de loader a la del contenido
         modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {

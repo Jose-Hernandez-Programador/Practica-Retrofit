@@ -1,5 +1,6 @@
 import com.example.practicaretrofit.ApiService
 import com.example.practicaretrofit.ChisteApiService
+import com.example.practicaretrofit.GatoApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -24,5 +25,16 @@ object ChisteRetrofitClient{
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ChisteApiService::class.java)
+    }
+}
+
+object GatoRetrofitClient{
+    private const val BASE_URL = "https://api.thecatapi.com/"
+    val api: GatoApiService by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(GatoApiService::class.java)
     }
 }

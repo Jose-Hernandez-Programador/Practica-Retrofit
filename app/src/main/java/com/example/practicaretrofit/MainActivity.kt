@@ -49,7 +49,7 @@ fun PantallaInicio () {
 
     val usuarios=LocalContext.current
     val chistes=LocalContext.current
-    val imagenes=LocalContext.current
+    val gatito=LocalContext.current
 
     Box( modifier = Modifier
         .fillMaxSize()) {
@@ -145,7 +145,8 @@ fun PantallaInicio () {
                         }
 
                         Button(
-                            onClick = { /*TODO*/ },
+                            onClick = { val intent = Intent(gatito, PantallaGato::class.java)
+                                      gatito.startActivity(intent)},
                             modifier = Modifier.fillMaxWidth(0.6f),
                             contentPadding = PaddingValues(vertical = 14.dp),
                             colors = ButtonDefaults.buttonColors(
@@ -153,7 +154,7 @@ fun PantallaInicio () {
                             )
                         ) {
                             Text(
-                                text = "Imagenes",
+                                text = "Gatito",
                                 fontWeight = FontWeight.Black,
                                 fontSize = 20.sp
                             )
