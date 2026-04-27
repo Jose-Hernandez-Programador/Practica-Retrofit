@@ -116,13 +116,13 @@ fun ContenedorGato(viewModel: GatoViewModel = viewModel()) {
 fun ListaGatos(viewModel: GatoViewModel = viewModel(),
     modifier: Modifier = Modifier)//conecta la vista con el ViewModel
 {
-var gatitos = viewModel.gatitos.value
+    var gatitos = viewModel.gatitos.value
     var loader= viewModel.load.value
 
     Box(modifier=Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center) {
         if (loader) {
-            CircularProgressIndicator()
+            CircularProgressIndicator()//muestra un circulo girando
         }
         else{
             Column(modifier = Modifier.fillMaxSize()
@@ -130,11 +130,12 @@ var gatitos = viewModel.gatitos.value
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally) {
                 gatitos.forEach { gato ->
-
-                    AsyncImage(
-                        model = gato.url,
-                        contentDescription = "Imagen de gato",
-                        modifier = Modifier.size(200.dp)
+                //forEache recorre la lista de gatitos y crea un elemento para cada uno
+                    AsyncImage(//viene de coil y se usa para cargar imagenes de internet
+                        model = gato.url,//carga la imagen desde la url
+                        contentDescription = "Imagen de gato", //descripcion de la imagen
+                        modifier = Modifier
+                            .size(200.dp)
                             .padding(8.dp)
                     )
 

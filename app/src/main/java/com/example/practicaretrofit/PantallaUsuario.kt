@@ -143,7 +143,7 @@ fun ListaUsuarios(viewModel: UsuariosViewModel = viewModel(),
 
                 items(listaUsuarios)/*recorre la lista de usuarios*/
                 { usuario -> /*representa cada elemento de la lista*/
-                    //usuario es una variable lambda que contiene cada elemento de la lista
+                    //usuario es una variable lambda que contiene cada elemento de la lista y puede llevar cualquier nombre
                     Card(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -156,8 +156,7 @@ fun ListaUsuarios(viewModel: UsuariosViewModel = viewModel(),
                         Column(
                             modifier = Modifier.padding(8.dp),
                             verticalArrangement = Arrangement.spacedBy(4.dp,
-                                alignment = Alignment.CenterVertically
-                            )
+                                alignment = Alignment.CenterVertically)
                         )
                         {
 
